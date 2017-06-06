@@ -80,7 +80,7 @@ function Isosurfaces( volume, isovalue )
 
 
     function color_change(){
-         var nfaces = geometry.faces.length;
+        var nfaces = geometry.faces.length;
         material.vertexColors = THREE.VertexColors;
         counter=0;
         for ( var i = 0; i < nfaces; i++ )
@@ -92,9 +92,9 @@ function Isosurfaces( volume, isovalue )
             geometry.faces[i].vertexColors.push( C1 );
             geometry.faces[i].vertexColors.push( C2 );
         }
-       
+	
 
- //material.color = new THREE.Color( "white" );
+	//material.color = new THREE.Color( "white" );
     }
     
     function cell_node_indices( cell_index )
@@ -140,6 +140,12 @@ function Isosurfaces( volume, isovalue )
 
     function interpolated_vertex( v0, v1, s )
     {
-        return new THREE.Vector3().addVectors( v0, v1 ).divideScalar( 2 );
+	var a = v0.x+(v0.y*volume.resolution.x)+(v0.z*volume.resolution.x*volume.resolution.y);
+	var b = v1.x+(v1.y*volume.resolution.x)+(v1.z*volume.resolution.x*volume.resolution.y);
+	var s0 = volume.values[a][0];
+	var s1 = volume.values[b][0];
+	
+	var t = (s-s0)/(s1-s0);
+	return new THREE.Vector3().addVectors(v0.multiplyScalar(1-t),v1.multiplyScalar(t));
     }
 }
