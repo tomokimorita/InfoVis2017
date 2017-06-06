@@ -3,16 +3,59 @@
     <title>W02: Task 02</title>
   </head>
   <body>
+        <form name= "fm">
+     v1:<input type="text"
+	  value="0"
+	   id="x0"/>
+    <input type="text"
+	   value="0"
+	   id="y0"/>
+    <input type="text"
+	   value="0"
+	   id="z0"/>
+    <br>
+    v2:<input type="text"
+	   value="0"
+	   id="x1"/>
+    <input type="text"
+	   value="0"
+	   id="y1"/>
+    <input type="text"
+	   value="0"
+	   id="z1"/>
+    <br>
+    v3:<input type="text"
+	   value="0"
+	   id="x2"/>
+    <input type="text"
+	   value="0"
+	   id="y2"/>
+    <input type="text"
+	   value="0"
+	   id="z2"/>
+    <input type="button"
+	   onclick="sankaku()"
+	   value="result"/>
+    <br>
+        </form>
     <script src="vec3.js"></script>
     <script>
-      var x0=0,y0=1,z0=2;
-      var x1=1,y1=2,z1=4;
-      var x2=2,y2=4,z2=5;
+      function sankaku(){
+      var x0=document.forms.fm.x0.value;
+      var x1=document.forms.fm.x1.value;
+      var x2=document.forms.fm.x2.value;
+      var y0=document.forms.fm.y0.value;
+      var y1=document.forms.fm.y1.value;
+      var y2=document.forms.fm.y2.value;
+      var z0=document.forms.fm.z0.value;
+      var z1=document.forms.fm.z1.value;
+      var z2=document.forms.fm.z2.value;
       var v0 = new Vec3(x0,y0,z0);
       var v1 = new Vec3(x1,y1,z1);
       var v2 = new Vec3(x2,y2,z2);
       var S = AreaOfTriangle(v0,v1,v2);
       document.write("<BR>","Area of triangle = ",S);
+      }
     </script>
   </body>
   </html>
