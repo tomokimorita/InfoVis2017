@@ -1,4 +1,4 @@
-function Isosurfaces( volume, isovalue ,shard)
+function Isosurfaces( volume, isovalue ,shard,st,ed)
 {
     var geometry = new THREE.Geometry();
     if(shard==1){
@@ -93,6 +93,7 @@ function Isosurfaces( volume, isovalue ,shard)
         var color = new THREE.Color( R, G, B );
         cmap.push( [ S, '0x' + color.getHexString() ] );
     }
+
     
     color_change();
     
