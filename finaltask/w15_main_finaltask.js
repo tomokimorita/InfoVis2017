@@ -2,6 +2,7 @@ function main()
 {
     var volume = new KVS.LobsterData();
     var screen = new KVS.THREEScreen();
+    var shard = 3;
 
     screen.init( volume, {
         width: window.innerWidth*0.8,
@@ -13,7 +14,7 @@ function main()
     screen.scene.add( bounds );
 
     var isovalue = 128;
-    var surfaces = Isosurfaces( volume, isovalue ,3);
+    var surfaces = Isosurfaces( volume, isovalue ,shard);
     screen.scene.add( surfaces );
 
     document.addEventListener( 'mousemove', function() {
@@ -25,13 +26,22 @@ function main()
     });
  
   
-
+    //Isovalue applyのボタンを押した場合
+    document.getElementById('change-isovalue-button')
+    .addEventListener('click', function() {
+                      isovalue=document.forms.fm.x0.value;
+                      screen.scene.remove( surfaces );
+                      surfaces = Isosurfaces( volume, isovalue ,shard);
+                      screen.scene.add( surfaces );
+                      
+                      });
 
       //phoneのボタンを押した場合
     document.getElementById('shading-Phone-button')
     .addEventListener('click', function() {
+                      shard = 1;
                       screen.scene.remove( surfaces );
- surfaces = Isosurfaces( volume, isovalue ,1);
+ surfaces = Isosurfaces( volume, isovalue ,shard);
                       screen.scene.add( surfaces );
 
                       });
@@ -39,8 +49,9 @@ function main()
     //gouraudのボタンを押した場合
     document.getElementById('shading-Gouraud-button')
     .addEventListener('click', function() {
+                      shard = 2;
                        screen.scene.remove( surfaces );
- surfaces = Isosurfaces( volume, isovalue ,2);
+ surfaces = Isosurfaces( volume, isovalue ,shard);
                       screen.scene.add( surfaces );
 
                       });
@@ -48,8 +59,9 @@ function main()
     //lambertianのボタンを押した場合
     document.getElementById('shading-Lambertian-button')
     .addEventListener('click', function() {
+                      shard = 3;
                       screen.scene.remove( surfaces );
-                      surfaces = Isosurfaces( volume, isovalue ,3);
+                      surfaces = Isosurfaces( volume, isovalue ,shard);
                       screen.scene.add( surfaces );
                       
                       });
